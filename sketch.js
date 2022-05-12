@@ -33,8 +33,6 @@ function setup() {
 
 	createCircles();
 	selectWords();
-
-	playAudio();
 }
 
 function draw() {
@@ -320,10 +318,4 @@ function drawLines(color) {
 		stroke(color);
 		line(random(width/2 + 20, width - pad), random(pad, height - pad), random(width/2 + 20, width - pad), random(pad, height - pad));
 	}
-}
-
-function playAudio() {
-	var audio = new Audio("susurration.ogg");
-	audio.loop = true;
-	audio.play();
 }
