@@ -1,30 +1,36 @@
 class Word {
 
-    constructor(word, x, y, fontSize) {
+    constructor(word) {
 
         this.word = word;
-        this.x = x;
-        this.y = y;
-        this.fontSize = fontSize;
-        this.color = colors.black;
+        this.x = width - width/10;
+        this.y = random(30, 50);
         this.bold = false;
         this.drag = false;
     }
 
     display() {
-        textSize(this.fontSize);
+
+        push();
+
         if (this.bold) {
+            fill(palette.white);
             textStyle(BOLD);
         } else {
+            fill(palette.river);
             textStyle(NORMAL);
         }
-        fill(this.color);
+
+        textSize((windowWidth/110));
         text(this.word, this.x, this.y);
+
+        pop();
     }
 
     highlight() {
 
         this.bold = true;
+        player.memory = this.word;
     }
 
     lowlight() {
