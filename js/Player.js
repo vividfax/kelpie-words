@@ -10,7 +10,7 @@ class Player {
         this.cameraY = 0;
         this.reset();
         this.symbol = symbols.horse;
-        this.stamina = 5000;
+        this.stamina = 5;
         this.coins = 0;
         this.dead = false;
         this.jumpOffset = 0;
