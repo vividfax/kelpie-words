@@ -44,6 +44,8 @@ const symbols = {
 	people: ["𓀔\uFE0E", "𓀀\uFE0E", "𓀁\uFE0E", "𓀂\uFE0E", "𓀃\uFE0E", "𓀉\uFE0E", "𓁎\uFE0E", "𓀦\uFE0E"],
 	coin: "❂\uFE0E",
 	horse: "♞\uFE0E",
+	map: "❖\uFE0E",
+	bed: "𝆶\uFE0E",
 };
 
 let images = {};
@@ -113,6 +115,7 @@ function setup() {
 
 	grid = new Grid(worldWidth, worldHeight);
 	player = new Player();
+	placePlayerAtStart();
 
     noLoop();
     draw();
@@ -184,21 +187,6 @@ function displayUI() {
 
 	text(topString, width/2, 50);
 
-	// let cornerString = "";
-
-	// if (grid.currentNumberOfNPCs == 0) {
-	// 	cornerString = grid.originalNumberOfNPCs + " souls saved";
-	// } else if (grid.currentNumberOfNPCs == 1) {
-	// 	cornerString = grid.currentNumberOfNPCs + " stranded soul";
-	// } else {
-	// 	cornerString = grid.currentNumberOfNPCs + " stranded souls";
-	// }
-
-	// push();
-	// textAlign(RIGHT);
-	// text(cornerString, width-40, 30);
-	// pop();
-
     displayToolip();
 }
 
@@ -211,6 +199,8 @@ function displayToolip() {
 
 	if (currentCell instanceof Shop && currentCell.generatedRoom) {
 		currentRoomCell = currentCell.grid[player.roomX][player.roomY];
+	} else if (currentCell instanceof House && currentCell.generatedRoom) {
+		currentRoomCell = currentCell.grid[player.roomX][player.roomY];
 	}
 
     if (mapDisplayed) tooltip = "press m to hide map";
@@ -219,12 +209,14 @@ function displayToolip() {
 	else if (canDragAndDrop && !hasDraggedAndDropped) tooltip = "use your mouse to drag and drop to rearrange your inventory";
 	else if (canClickAfterDragAndDrop && !hasClickedAfterDragAndDrop) tooltip = "select the phrase you want to equip by clicking on it";
     else if (currentCell instanceof Shop && !player.isInRoom) tooltip = "press e to enter";
+    else if (currentCell instanceof House && player.isInRoom && currentRoomCell.symbol == symbols.map) tooltip = "press m to view map";
     else if (player.isInRoom && currentRoomCell.symbol == symbols.door) tooltip = "press e to exit";
     else if (currentCell instanceof Shop && player.isInRoom && currentRoomCell) tooltip = currentRoomCell.getTooltip();
     else if (currentCell instanceof Ruin && player.stamina >= 20) tooltip = "press h to repair for 10 " + symbols.heart;
     else if (currentCell instanceof Ruin && player.stamina < 20) tooltip = "repair for 10 " + symbols.heart;
     else if (currentCell instanceof Note) tooltip = currentCell.getTooltip();
-    else if (currentCell instanceof House && houses.length > 1) tooltip = "press t to fast travel";
+    else if (currentCell instanceof House && houses.length > 1 && !player.isInRoom) tooltip = "press t to fast travel or e to enter";
+    else if (currentCell instanceof House && !player.isInRoom) tooltip = "press e to enter";
     else if (currentCell instanceof EmptyCell && currentCell.height == 0 && player.inventory.building_materials > 0) tooltip = "press h to build a house";
     else if (currentCell instanceof NPC) tooltip = currentCell.getTooltip(true);
     else if (!hasMovedDiagonally && player.steps > 15) tooltip = "press two arrow keys at the same time to move diagonally";
@@ -364,6 +356,8 @@ function keyReleased() {
 
 	if (currentCell instanceof Shop && currentCell.generatedRoom) {
 		currentRoomCell = currentCell.grid[player.roomX][player.roomY];
+	} else if (currentCell instanceof House && currentCell.generatedRoom) {
+		currentRoomCell = currentCell.grid[player.roomX][player.roomY];
 	}
 
     if (keyCode == 79 && currentCell instanceof Note && !currentCell.opened) { // o
@@ -371,6 +365,8 @@ function keyReleased() {
     } else if (keyCode == 79 && player.isInRoom && currentRoomCell instanceof Note) { // o
         currentRoomCell.open();
     } else if (keyCode == 69 && currentCell instanceof Shop && !player.isInRoom) { // e
+        player.enterRoom();
+    } else if (keyCode == 69 && currentCell instanceof House && !player.isInRoom) { // e
         player.enterRoom();
     } else if (keyCode == 66 && player.isInRoom && currentRoomCell instanceof Item) { // b
 		currentRoomCell.buy();
@@ -424,10 +420,23 @@ function keyReleased() {
 		return;
 	}
 
-    // let newCurrentCell = grid.grid[player.x][player.y];
-	// if (newCurrentCell instanceof House && player.stamina < 5) player.stamina = 5;
+    let newCurrentCell = grid.grid[player.x][player.y];
+	let newCurrentRoomCell = null;
+
+	if (newCurrentCell instanceof House && newCurrentCell.generatedRoom) {
+		newCurrentRoomCell = newCurrentCell.grid[player.roomX][player.roomY];
+
+		if (newCurrentRoomCell.symbol == symbols.bed && player.stamina < 5) player.stamina = 5;
+	}
 
     draw();
+}
+
+function placePlayerAtStart() {
+
+	player.roomX = 4;
+	player.roomY = 1;
+	player.isInRoom = true;
 }
 
 function reset() {
@@ -451,9 +460,10 @@ function mod(n, m) {
 function displayMap() {
 
 	push();
+	translate(-width/10, 0);
 	translate(width/2, height/2);
 	translate(-worldWidth/2/2, -worldHeight/2/2);
-	background(palette.fog);
+	background(palette.white);
 
 	for (let i = 0; i < worldWidth; i+=2) {
 		for (let j = 0; j < worldHeight; j+=2) {

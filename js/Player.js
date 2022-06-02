@@ -45,6 +45,10 @@ class Player {
 
         this.coins = 0;
         this.stamina = 5;
+
+        this.roomX = 4;
+        this.roomY = 1;
+        this.isInRoom = true;
     }
 
     move(x, y) {

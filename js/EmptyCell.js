@@ -54,7 +54,7 @@ class EmptyCell {
 
         // textSize(cellSize * 0.7);
 
-        if (this.symbol == symbols.door) {
+        if (this.symbol == symbols.door || this.symbol == symbols.bed || this.symbol == symbols.map) {
             fill(palette.white);
             text(this.symbol, this.x + cellSize / 2, this.y + cellSize / 2 + 2);
         }
