@@ -66,7 +66,7 @@ class Shop {
             fill(palette.snow);
         }
 
-        rect(this.x, this.y, cellSize);
+        rect(this.x, this.y, cellSize+1);
 
         if (this.height == 1 || this.height == 2 || this.height >= 5) {
             fill(palette.black);

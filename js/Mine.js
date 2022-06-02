@@ -35,7 +35,7 @@ class Mine {
             fill(palette.river);
         }
 
-        rect(this.x, this.y, cellSize);
+        rect(this.x, this.y, cellSize+1);
 
         if (this.height > 0) {
             fill(palette.deepRed);

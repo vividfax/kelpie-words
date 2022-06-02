@@ -83,7 +83,7 @@ class NPC {
             fill(palette.snow);
         }
 
-        rect(this.x, this.y, cellSize);
+        rect(this.x, this.y, cellSize+1);
 
         if (this.subject == "" || (this.eaten && this.subject == "")) return;
 

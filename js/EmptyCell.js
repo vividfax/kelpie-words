@@ -42,7 +42,7 @@ class EmptyCell {
             fill(palette.height8);
         }
 
-        rect(this.x, this.y, cellSize);
+        rect(this.x, this.y, cellSize+1);
 
         if (this.height == 0 && this.symbol == symbols.emptyCell) return;
 

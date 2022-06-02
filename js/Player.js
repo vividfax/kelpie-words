@@ -169,11 +169,11 @@ class Player {
             fill(palette.river);
         }
 
-        rect(-cellSize/2, -cellSize/2, cellSize);
+        rect(-cellSize/2, -cellSize/2, cellSize+1);
 
         if (this.dead) {
             fill(palette.ghosting);
-            rect(-cellSize/2, -cellSize/2, cellSize);
+            rect(-cellSize/2, -cellSize/2, cellSize+1);
             rotate(180);
         }
 

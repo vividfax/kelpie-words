@@ -14,11 +14,11 @@ class Rock {
 
         if (this.eaten) {
             fill(palette.black);
-            rect(this.x, this.y, cellSize);
+            rect(this.x, this.y, cellSize+1);
             return;
         }
         fill(palette.wall);
-        rect(this.x, this.y, cellSize);
+        rect(this.x, this.y, cellSize+1);
 
         fill(palette.black);
 
