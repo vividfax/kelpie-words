@@ -108,6 +108,8 @@ class Note {
 
         rect(this.x, this.y, cellSize);
 
+        if (this.opened) return;
+
         if (this.height == 1 || this.height == 2 || this.height >= 5) {
             fill(palette.black);
         } else {

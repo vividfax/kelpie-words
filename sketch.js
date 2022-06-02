@@ -103,7 +103,7 @@ function setup() {
 	shuffle(adjectives, true);
 	shuffle(nouns, true);
 
-	createCanvas(windowWidth, windowHeight);
+	createCanvas(windowWidth, windowHeight+1);
 
 	angleMode(DEGREES);
 	textAlign(CENTER, CENTER);
@@ -150,18 +150,24 @@ function draw() {
 
 	if (mapDisplayed) displayMap();
 
+	displayNest();
+
+	push();
+	translate(-width/10, 0);
     displayUI();
+	pop();
 }
 
 function displayUI() {
 
     push();
+
 	rectMode(CENTER);
-	fill(palette.white);
+	fill(palette.black);
 	rect(width/2, 50, 550, 70, 30);
 	pop();
 
-	fill(palette.black);
+	fill(palette.white);
 	textSize(20);
 
 	let topString = player.stamina + " " + symbols.heart;
@@ -194,7 +200,6 @@ function displayUI() {
 	// pop();
 
     displayToolip();
-	displayNest();
 }
 
 function displayToolip() {
@@ -227,11 +232,12 @@ function displayToolip() {
 	if (tooltip != "") {
 		push();
 		rectMode(CENTER);
-		fill(palette.white);
+		fill(palette.black);
 		rect(width/2, height-50, 750, 70, 30);
 		pop();
 	}
 
+	fill(palette.white);
 	text(tooltip, width/2, height - 50);
 }
 
@@ -242,7 +248,7 @@ function displayNest() {
 	fill(palette.blacker);
 	rect(width - width/5, 0, width/5, height);
 	fill(palette.black);
-	rect(width - width/5+8, 8, width/5-16, 80-16);
+	rect(width - width/5+8, 8, width/5-16, 80-16, 4);
 
 	pop();
 
