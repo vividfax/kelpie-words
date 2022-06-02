@@ -320,6 +320,15 @@ function getOffset(numberOfItems) {
 
 function keyPressed() {
 
+	if (keyIsDown(67) && keyIsDown(72)) { // c+h
+		player.stamina = 5000;
+		player.coins = 5000;
+		player.inventory.pickaxe = 5000;
+		player.inventory.building_materials = 5000;
+		draw();
+		return;
+	}
+
 	displayJumpTooltip = false;
 
 	if (player.dead) return;
