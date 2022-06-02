@@ -320,6 +320,18 @@ function getOffset(numberOfItems) {
 
 function keyPressed() {
 
+	if (keyIsDown(67) && keyIsDown(72) && keyIsDown(70)) { // c+h+f
+
+        for (let i = 0; i < grid.width; i++) {
+            for (let j = 0; j < grid.height; j++) {
+
+                grid.grid[i][j].fog = false;
+            }
+        }
+		draw();
+		return;
+	}
+
 	if (keyIsDown(67) && keyIsDown(72)) { // c+h
 		player.stamina = 5000;
 		player.coins = 5000;
@@ -387,7 +399,7 @@ function keyReleased() {
 		let nextHouse = houses[nextHouseIndex];
 		player.x = nextHouse.x/cellSize;
 		player.y = nextHouse.y/cellSize;
-	} else if (keyCode == 77) { // m
+	} else if (keyCode == 77 && player.isInRoom && currentRoomCell.symbol == symbols.map) { // m
 		mapDisplayed = !mapDisplayed;
 	} else if (keyCode == 72 && !player.isInRoom && currentCell instanceof EmptyCell && currentCell.height == 0 && player.inventory.building_materials > 0) { // h
 		let house = new House(player.x, player.y);
@@ -471,7 +483,7 @@ function displayMap() {
 	push();
 	translate(-width/10, 0);
 	translate(width/2, height/2);
-	translate(-worldWidth/2/2, -worldHeight/2/2);
+	translate(-worldWidth/2, -worldHeight/2);
 	background(palette.white);
 
 	for (let i = 0; i < worldWidth; i+=2) {
@@ -492,14 +504,14 @@ function displayMap() {
 			else if (cell.height == 1) fill(palette.sand);
 			else if (cell.height == 0) fill(palette.water);
 
-			rect(i/2, j/2, 1)
+			rect(i, j, 4)
 		}
 	}
 
 	fill(palette.trueBlack);
 	stroke(palette.trueBlack);
 	strokeWeight(5);
-	rect(round(player.x/8) * 8/2, round(player.y/8) * 8/2, 1, 1, 100)
+	rect(round(player.x/4) * 8/2 + 2, round(player.y/4) * 8/2 + 2, 1, 1, 100)
 
 	pop();
 }

@@ -53,6 +53,8 @@ class Player {
 
     move(x, y) {
 
+        if (mapDisplayed) return;
+
         if (!this.isInRoom) {
 
             let targetCell = grid.grid[mod(this.x+x, worldWidth)][mod(this.y+y, worldHeight)];
