@@ -103,7 +103,7 @@ function setup() {
 	shuffle(adjectives, true);
 	shuffle(nouns, true);
 
-	createCanvas(windowWidth, windowHeight+2);
+	createCanvas(windowWidth, windowHeight+1);
 
 	angleMode(DEGREES);
 	textAlign(CENTER, CENTER);
