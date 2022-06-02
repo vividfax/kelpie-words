@@ -194,7 +194,7 @@ class Grid {
 
     generateDeserts() {
 
-        for (let i = 0; i < 400; i++) {
+        for (let i = 0; i < 300; i++) {
 
             let randomX = int(random(worldWidth));
             let randomY = int(random(worldHeight));
@@ -222,7 +222,7 @@ class Grid {
 
     generateLakes() {
 
-        for (let i = 0; i < 400; i++) {
+        for (let i = 0; i < 300; i++) {
 
             let randomX = int(random(worldWidth));
             let randomY = int(random(worldHeight));
