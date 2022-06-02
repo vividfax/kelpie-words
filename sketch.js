@@ -167,10 +167,12 @@ function displayUI() {
 
 	rectMode(CENTER);
 	fill(palette.black);
+	if (player.isInRoom) fill(palette.white);
 	rect(width/2, 50, 550, 70, 30);
 	pop();
 
 	fill(palette.white);
+	if (player.isInRoom) fill(palette.black);
 	textSize(20);
 
 	let topString = player.stamina + " " + symbols.heart;
@@ -225,11 +227,13 @@ function displayToolip() {
 		push();
 		rectMode(CENTER);
 		fill(palette.black);
+		if (player.isInRoom) fill(palette.white);
 		rect(width/2, height-50, 750, 70, 30);
 		pop();
 	}
 
 	fill(palette.white);
+	if (player.isInRoom) fill(palette.black);
 	text(tooltip, width/2, height - 50);
 }
 
