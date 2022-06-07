@@ -169,19 +169,19 @@ class Grid {
         for (let i = 0; i < this.width; i++) {
             for (let j = 0; j < this.height; j++) {
 
-                if (i > this.width/2 - this.startingLevelWidth*0.28 && i < this.width/2 + this.startingLevelWidth*0.28 && j > this.height/2 - this.startingLevelHeight*0.35 && j < this.height/2 + this.startingLevelHeight*0.35) {
-                    if (int(random(2.5)) == 0) {
-                        this.grid[i][j] = new Mine(i, j);
-                    }
-                    continue;
-                }
+                // if (i > this.width/2 - this.startingLevelWidth*0.28 && i < this.width/2 + this.startingLevelWidth*0.28 && j > this.height/2 - this.startingLevelHeight*0.35 && j < this.height/2 + this.startingLevelHeight*0.35) {
+                //     if (int(random(2.5)) == 0) {
+                //         this.grid[i][j] = new Mine(i, j);
+                //     }
+                //     continue;
+                // }
 
-                if (i > this.width/2 - this.startingLevelWidth && i < this.width/2 + this.startingLevelWidth && j > this.height/2 - this.startingLevelHeight && j < this.height/2 + this.startingLevelHeight) {
-                    if (int(random(4)) == 0) {
-                        this.grid[i][j] = new Mine(i, j);
-                    }
-                    continue;
-                }
+                // if (i > this.width/2 - this.startingLevelWidth && i < this.width/2 + this.startingLevelWidth && j > this.height/2 - this.startingLevelHeight && j < this.height/2 + this.startingLevelHeight) {
+                //     if (int(random(4)) == 0) {
+                //         this.grid[i][j] = new Mine(i, j);
+                //     }
+                //     continue;
+                // }
 
                 if (mineArray[place] == true && this.grid[i][j] instanceof Rock == false && this.grid[i][j] instanceof Shop == false) {
                     this.grid[i][j] = new Mine(i, j);
@@ -449,7 +449,7 @@ class Grid {
                 let cell = this.grid[i][j];
 
                 if (i > worldWidth/2 - this.startingLevelWidth/2-1 && i < worldWidth/2 + this.startingLevelWidth/2+1 && j > worldHeight/2 - this.startingLevelHeight/2-1 && j < worldHeight/2 + this.startingLevelHeight/2+1) {
-                    if (int(random(4)) == 0 && cell instanceof EmptyCell && cell.height == 0) {
+                    if (int(random(30)) == 0 && cell instanceof EmptyCell && cell.height == 0) {
                         this.grid[i][j] = new Note(i, j, 0, 3);
                     }
                 }
@@ -475,7 +475,7 @@ class Grid {
                 let cell = this.grid[i][j];
 
                 if (i > worldWidth/2 - this.startingLevelWidth/2-1 && i < worldWidth/2 + this.startingLevelWidth/2+1 && j > worldHeight/2 - this.startingLevelHeight/2-1 && j < worldHeight/2 + this.startingLevelHeight/2+1) {
-                    if (int(random(4)) == 0 && (cell instanceof EmptyCell && cell.height == 0)) {
+                    if (int(random(20)) == 0 && (cell instanceof EmptyCell && cell.height == 0)) {
                         this.grid[i][j] = new NPC(i, j, 0, 3);
                         this.currentNumberOfNPCs++;
                     }
