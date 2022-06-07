@@ -24,6 +24,10 @@ class Note {
             n = nouns.slice(0, this.vocabSize);
             v = verbs.slice(0, this.vocabSize);
             a = adjectives.slice(0, this.vocabSize);
+
+            n = shuffle(n);
+            v = shuffle(v);
+            a = shuffle(a);
         }
 
         let phrases = [
@@ -44,15 +48,15 @@ class Note {
 
         let phrase = random(phrases);
 
-        phrase = phrase.replace("$noun", random(n));
-        phrase = phrase.replace("$noun", random(n));
-        phrase = phrase.replace("$noun", random(n));
-        phrase = phrase.replace("$verb", random(v));
-        phrase = phrase.replace("$verb", random(v));
-        phrase = phrase.replace("$verb", random(v));
-        phrase = phrase.replace("$adjective", random(a));
-        phrase = phrase.replace("$adjective", random(a));
-        phrase = phrase.replace("$adjective", random(a));
+        phrase = phrase.replace("$noun", n[0]);
+        phrase = phrase.replace("$noun", n[1]);
+        phrase = phrase.replace("$noun", n[2]);
+        phrase = phrase.replace("$verb", v[0]);
+        phrase = phrase.replace("$verb", v[1]);
+        phrase = phrase.replace("$verb", v[2]);
+        phrase = phrase.replace("$adjective", v[0]);
+        phrase = phrase.replace("$adjective", v[1]);
+        phrase = phrase.replace("$adjective", v[2]);
 
         return phrase;
     }
