@@ -54,9 +54,9 @@ class Note {
         phrase = phrase.replace("$verb", v[0]);
         phrase = phrase.replace("$verb", v[1]);
         phrase = phrase.replace("$verb", v[2]);
-        phrase = phrase.replace("$adjective", v[0]);
-        phrase = phrase.replace("$adjective", v[1]);
-        phrase = phrase.replace("$adjective", v[2]);
+        phrase = phrase.replace("$adjective", a[0]);
+        phrase = phrase.replace("$adjective", a[1]);
+        phrase = phrase.replace("$adjective", a[2]);
 
         return phrase;
     }

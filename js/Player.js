@@ -37,13 +37,13 @@ class Player {
         this.cameraY = 0;
         grid.clearFog(this.x, this.y);
 
-        this.inventory = {
-            pickaxe: 0,
-            building_materials: 0,
-            invisibility_cloak: 0
-        }
+        // this.inventory = {
+        //     pickaxe: 0,
+        //     building_materials: 0,
+        //     invisibility_cloak: 0
+        // }
 
-        this.coins = 0;
+        // this.coins = 0;
         this.stamina = 5;
 
         this.roomX = 4;
