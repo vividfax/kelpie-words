@@ -112,7 +112,7 @@ function setup() {
 	angleMode(DEGREES);
 	textAlign(CENTER, CENTER);
 	imageMode(CENTER);
-	textFont("Fira Code");
+	textFont("Averia Sans Libre");
 	noStroke();
 
 	grid = new Grid(worldWidth, worldHeight);
