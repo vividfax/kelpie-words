@@ -11,6 +11,11 @@ class Note {
         this.opened = false;
         this.phrase = this.makePhrase();
         this.price = int((this.phrase.length-8)/2);
+
+        if (this.price <= 5) {
+            this.price = 6;
+        }
+
         this.eaten = false;
     }
 
@@ -25,10 +30,11 @@ class Note {
             v = verbs.slice(0, this.vocabSize);
             a = adjectives.slice(0, this.vocabSize);
 
-            n = shuffle(n);
-            v = shuffle(v);
-            a = shuffle(a);
         }
+
+        n = shuffle(n);
+        v = shuffle(v);
+        a = shuffle(a);
 
         let phrases = [
             `"...$adjective $noun..."`,

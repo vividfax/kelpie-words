@@ -449,17 +449,17 @@ class Grid {
                 let cell = this.grid[i][j];
 
                 if (i > worldWidth/2 - this.startingLevelWidth/2-1 && i < worldWidth/2 + this.startingLevelWidth/2+1 && j > worldHeight/2 - this.startingLevelHeight/2-1 && j < worldHeight/2 + this.startingLevelHeight/2+1) {
-                    if (int(random(30)) == 0 && cell instanceof EmptyCell && cell.height == 0) {
+                    if (int(random(10)) == 0 && cell instanceof EmptyCell && cell.height == 0) {
                         this.grid[i][j] = new Note(i, j, 0, 3);
                     }
-                }
+                } else {
+                    if ((int(random(30)) == 1 && cell instanceof Rock) || ((int(random(30)) == 1 && cell instanceof EmptyCell && cell.height == 0))) {
 
-                if ((int(random(30)) == 1 && cell instanceof Rock) || ((int(random(30)) == 1 && cell instanceof EmptyCell && cell.height == 0))) {
+                        let h = cell.height;
+                        if (cell instanceof Rock) h = -1;
 
-                    let h = cell.height;
-                    if (cell instanceof Rock) h = -1;
-
-                    this.grid[i][j] = new Note(i, j, h, -1);
+                        this.grid[i][j] = new Note(i, j, h, -1);
+                    }
                 }
             }
         }

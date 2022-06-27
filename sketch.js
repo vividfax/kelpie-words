@@ -98,7 +98,7 @@ function preload(){
 
 function setup() {
 
-	randomSeed(10);
+	randomSeed(8);
 
 	verbs.pop();
 	adjectives.pop();
