@@ -23,7 +23,7 @@ class Item {
     getTooltip() {
 
         if (player.stamina >= this.price) {
-            return "press b to buy " + this.amount +  " " + this.type + " for "  + this.price + " " + symbols.coin;
+            return "press B to buy " + this.amount +  " " + this.type + " for "  + this.price + " " + symbols.coin;
         } else {
             return this.amount +  " " + this.type + " for "  + this.price + " " + symbols.coin;
         }

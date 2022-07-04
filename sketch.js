@@ -207,21 +207,21 @@ function displayToolip() {
 		currentRoomCell = currentCell.grid[player.roomX][player.roomY];
 	}
 
-    if (mapDisplayed) tooltip = "press m to hide map";
-    else if (!hasMoved) tooltip = "wasd or arrow keys to walk";
+    if (mapDisplayed) tooltip = "press M to hide map";
+    else if (!hasMoved) tooltip = "WASD or arrow keys to walk";
     else if (displayJumpTooltip) tooltip = "press spacebar to jump";
 	else if (canDragAndDrop && !hasDraggedAndDropped) tooltip = "use your mouse to drag and drop to rearrange your inventory";
 	else if (canClickAfterDragAndDrop && !hasClickedAfterDragAndDrop) tooltip = "select the phrase you want to equip by clicking on it";
-    else if (currentCell instanceof Shop && !player.isInRoom) tooltip = "press e to enter";
-    else if (currentCell instanceof House && player.isInRoom && currentRoomCell.symbol == symbols.map) tooltip = "press m to view map";
-    else if (player.isInRoom && currentRoomCell.symbol == symbols.door) tooltip = "press e to exit";
+    else if (currentCell instanceof Shop && !player.isInRoom) tooltip = "press E to enter";
+    else if (currentCell instanceof House && player.isInRoom && currentRoomCell.symbol == symbols.map) tooltip = "press M to view map";
+    else if (player.isInRoom && currentRoomCell.symbol == symbols.door) tooltip = "press E to exit";
     else if (currentCell instanceof Shop && player.isInRoom && currentRoomCell) tooltip = currentRoomCell.getTooltip();
-    else if (currentCell instanceof Ruin && player.stamina >= 20) tooltip = "press h to repair for 10 " + symbols.heart;
+    else if (currentCell instanceof Ruin && player.stamina >= 20) tooltip = "press H to repair for 10 " + symbols.heart;
     else if (currentCell instanceof Ruin && player.stamina < 20) tooltip = "repair for 10 " + symbols.heart;
     else if (currentCell instanceof Note) tooltip = currentCell.getTooltip();
-    else if (currentCell instanceof House && houses.length > 1 && !player.isInRoom) tooltip = "press t to fast travel or e to enter";
-    else if (currentCell instanceof House && !player.isInRoom) tooltip = "press e to enter";
-    else if (currentCell instanceof EmptyCell && currentCell.height == 0 && player.inventory.building_materials > 0) tooltip = "press h to build a house";
+    else if (currentCell instanceof House && houses.length > 1 && !player.isInRoom) tooltip = "press T to fast travel or e to enter";
+    else if (currentCell instanceof House && !player.isInRoom) tooltip = "press E to enter";
+    else if (currentCell instanceof EmptyCell && currentCell.height == 0 && player.inventory.building_materials > 0) tooltip = "press H to build a house";
     else if (currentCell instanceof NPC) tooltip = currentCell.getTooltip(true);
     else if (!hasMovedDiagonally && player.steps > 15) tooltip = "press two arrow keys at the same time to move diagonally";
 

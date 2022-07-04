@@ -92,7 +92,7 @@ class Note {
         } else if (!this.opened && player.stamina < this.price) {
             return "you need " + this.price + " " + symbols.heart + " to open this";
         } else if (!this.opened) {
-            return "press o to open for " + this.price + " " + symbols.heart;
+            return "press O to open for " + this.price + " " + symbols.heart;
         }
     }
 
